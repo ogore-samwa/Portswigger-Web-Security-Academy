@@ -33,6 +33,10 @@ stockApi=http://localhost/admin/delete?username=carlos
 
 ##  Proof of Concept (PoC)
 ![screenshot1](./ssrf%20intro.png)
+![screenshot2](./ssrf%20intro1.png)
+![screenshot3](./ssrf%20intro2.png)
+![screenshot4](./ssrf%20intro3.png)
+![screenshot5](./ssrf%20lab1.png)
 
 ##  Remediation
 Developers can mitigate this server-side risk using the following defensive strategies:
