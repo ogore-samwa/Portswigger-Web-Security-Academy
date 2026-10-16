@@ -66,6 +66,7 @@ stockApi=http://localhost/admin/delete?username=carlos
 ![screenshot3](./ssrf%20intro2.png)
 ![screenshot4](./ssrf%20intro3.png)
 ![screenshot5](./ssrf%20lab1.png)
+![screenshot6](./solved.png)
 
 ##  Remediation
 Developers can mitigate this server-side risk using the following defensive strategies:
