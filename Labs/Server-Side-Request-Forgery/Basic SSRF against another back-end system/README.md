@@ -46,16 +46,16 @@ stockApi=http://192.168.0
 8. Transmit the target deletion string block mapping structure array to complete the vulnerability pipeline validation objective.
 
 ##  Proof of Concept (PoC)
-*(Note: Swap these placeholders with your matching repo filenames if needed)*
+![Stock Product URL Request](./Screenshot_2026-10-16_20_30_12.png)
 
 ### Baseline Analysis & Fuzzing Scope
-![Fuzzing Target Configuration](./ssrf%20intro.png)
+![Fuzzing Target Configuration](./Screenshot_2026-10-16_20_11_38.png)
 
 ### Intruder Scan Attack Metrics Discovery
-![Burp Intruder Server Discovery Success Mapping](./ssrf%20before)
+![Burp Intruder Server Discovery Success Mapping](./Screenshot_2026-10-16_20_28_25.png)
 
 ### Exploitation Success Notification Verification Flow
-![Lab Completion Validation Banner Response Frame](./ssrf%20after)
+![Lab Completion Validation Banner Response Frame](./Screenshot_2026-10-16_20_29_02.png)
 
 ##  Remediation
 * **Implement Architecture Firewalls:** Configure explicit firewall access validation filters protecting the internal network boundaries directly.
