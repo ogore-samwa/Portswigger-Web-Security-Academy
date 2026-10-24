@@ -26,9 +26,9 @@ SELECT product_id, name, description FROM products WHERE category = 'Pets' UNION
 *Note: Incremental attempts with one and two `NULL` values triggered a `500 Internal Server Error`. Providing exactly three `NULL` values satisfied the database engine structural constraints, solving the lab.*
 
 ### Proof Of Concept(PoC)
-![Setup](../Screenshot_2026-10-24_19_51_19.png)
-![Intercepted Request](../Screenshot_2026-10-24_19_52_23.png)
-![Payload Injection](../Screenshot_2026-10-24_19_52_44.png)
-![Setup 4](../Screenshot_2026-10-24_19_56_22.png)
-![Setup 5](../Screenshot_2026-10-24_19_56_40.png)
-![Setup 6](../Screenshot_2026-10-24_19_57_00.png)
+![Setup](./Screenshot_2026-10-24_19_51_19.png)
+![Intercepted Request](./Screenshot_2026-10-24_19_52_23.png)
+![Payload Injection](./Screenshot_2026-10-24_19_52_44.png)
+![Setup 4](./Screenshot_2026-10-24_19_56_22.png)
+![Setup 5](./Screenshot_2026-10-24_19_56_40.png)
+![Solved Lab](./Screenshot_2026-10-24_19_57_00.png)
