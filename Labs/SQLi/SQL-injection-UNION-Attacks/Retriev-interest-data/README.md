@@ -22,7 +22,7 @@ First, I mapped the web application's structure to locate input vectors that tal
 * **Observation:** The application filters products by category using a `GET` parameter: `/filter?category=Gifts`. 
 * **Theory:** If the application appends this parameter unsafely into a backend database query, it represents a potential SQL Injection entry point. 
 
-![Reconnaissance - Intercepted HTTP Request](./images/image_8BDvOV.png)
+![Reconnaissance - Intercepted HTTP Request](./Screenshot_2026-10-25_21_33_46.png)
 *Paragraph caption: Intercepting the baseline product category query using Burp Suite Proxy and routing it to the Repeater module.*
 
 ---
@@ -34,12 +34,12 @@ To successfully execute a `UNION` attack, the injected query must return the exa
 
 * **Trial 1:** I injected a single-column `UNION SELECT` block: `'+UNION+SELECT+'abc'--`. The server responded with a `500 Internal Server Error`, confirming a column mismatch.
 
-![Exploitation - Column Mismatch](./images/image__Ya6Kf.png)
+![Exploitation - Column Mismatch](./Screenshot_2026-10-25_21_35_25.png)
 *Paragraph caption: The server returns a 500 error, indicating the original query does not contain exactly one column.*
 
 * **Trial 2:** I adjusted the payload to query two columns: `'+UNION+SELECT+'abc','def'--`. The server responded with a `200 OK`, confirming that the original query retrieves exactly **two columns**, both capable of holding text/string data.
 
-![Exploitation - Column Match and Type Verification](./images/image_i3PHbn.png)
+![Exploitation - Column Match and Type Verification](./Screenshot_2026-10-25_21_35_40.png)
 *Paragraph caption: A successful 200 OK response verifies the query expects two text-compatible columns.*
 
 ---
@@ -49,12 +49,12 @@ Based on the lab documentation, the application contains a table called `users` 
 
 * **Final Payload:** `'+UNION+SELECT+username,+password+FROM+users--`
 
-![Exploitation - Credential Exfiltration](./images/image_haYnWo.png)
+![Exploitation - Credential Exfiltration](./Screenshot_2026-10-25_21_42_09.png)
 *Paragraph caption: Modifying the parameter to execute a UNION SELECT directly against the target users table.*
 
 * **Result:** The application dumped the table contents directly into the HTML response. I extracted the password string (`fmrotwed6hisr8nrrzd5`) belonging to the user `administrator`.
 
-![Exploitation - Copying Administrator Password](./images/image_WIwCYH.png)
+![Exploitation - Copying Administrator Password](./Screenshot_2026-10-25_21_43_12.png)
 *Paragraph caption: Isolating the administrator's credential hash/string from the returned server table layout.*
 
 ---
@@ -63,15 +63,7 @@ Based on the lab documentation, the application contains a table called `users` 
 *Evidence of successful exploitation.*
 
 Navigated to the application login screen (`/login`), populated the credentials with the exfiltrated administrator profile, and authenticated successfully.
-![Image 1](./Screenshot_2026-10-24_21_57_36.png)
-![Image 2](./Screenshot_2026-10-25_21_33_46.png)
-![Image 3](./Screenshot_2026-10-25_21_35_25.png)
-![Image 4](./Screenshot_2026-10-25_21_35_40.png)
-![Image 5](./Screenshot_2026-10-25_21_35_57.png)
-![Image 6](./Screenshot_2026-10-25_21_37_19.png)
-![Image 7](./Screenshot_2026-10-25_21_42_09.png)
-![Image 8](./Screenshot_2026-10-25_21_42_33.png)
-![Image 9](./Screenshot_2026-10-25_21_43_12.png)
+
 ![PoC - Lab Solved Banner](./Screenshot_2026-10-25_21_43_21.png)
 *Paragraph caption: The administrative account panel displays alongside the "Congratulations, you solved the lab!" alert banner.*
 
