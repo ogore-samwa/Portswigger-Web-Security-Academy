@@ -74,3 +74,42 @@ The following architectural milestones map the theoretical progression through t
 To systematically eliminate SQL Injection risks, development teams must entirely abandon dynamic input string construction routines:
 *   **Mandate Parameterized Queries (Prepared Statements):** Ensure the database engine compiles the query template structure first, treating user-supplied variables strictly as data inputs rather than executable syntax.
 *   **Enforce Strict Allowlisting for Structural Components:** If inputs must modify structural items like column names or sorting rules (where prepared statements cannot be natively applied), cross-reference user data against a hardcoded array of trusted parameters before transmission.
+
+# Learning Path Recap: Web Security Academy - SQL Injection
+
+## 1. Executive Summary
+This document provides a final comprehensive recap of the completed **SQL Injection (SQLi)** training module. The path progressed from fundamental vulnerabilities (retrieving hidden data, subverting application logic) to complex data exfiltration methodologies (UNION-based queries, database fingerprinting, blind exploitation using conditional responses/time delays). The module concluded with advanced filter evasion strategies via alternative injection contexts (XML Hex entity encoding) and structural remediation planning. 
+
+---
+
+## 2. Comprehensive Knowledge Mapping
+
+### Vulnerability Types Mastered
+*   **In-Band SQLi (UNION-Based):** Determining query column structures and field data types to join arbitrary database records alongside legitimate application payloads.
+*   **Blind SQLi (Conditional Responses):** Exfiltrating database contents bit-by-bit by monitoring true/false application behaviors and response changes.
+*   **Blind SQLi (Time Delays):** Inducing database-side execution pauses (e.g., `pg_sleep()`) to exfiltrate parameters when standard outputs or status codes are completely static.
+*   **Second-Order SQLi (Stored Injection):** Introducing payloads that sit securely inside a database table upon initial receipt (safe storage), but break logic layers later when the application retrieves and processes that data into a separate query template.
+
+### Contextual Defenses Broken
+*   **Obfuscated Vector Contexts:** Overcoming perimeter monitoring (WAFs) by transitioning from standard URL/Form inputs to embedded structured data structures (JSON and XML payloads).
+*   **WAF Rule Evasion:** Constructing specific encoder chains (such as `<@hex_entities>`) to ensure payloads appear benign during parameter inspection but decode cleanly back into raw code right before reaching the relational database management system (RDBMS).
+
+---
+
+## 3. Core Remediation Matrix
+
+To definitively mitigate SQL Injection across all discovered variants, developers must enforce the following strategies outlined at the conclusion of the track:
+
+| Remediation Tier | Technical Implementation Strategy | Prevention Objective |
+| :--- | :--- | :--- |
+| **Primary Core Fix** | **Parameterized Queries (Prepared Statements)** | Ensures that all user-supplied data inputs are bound explicitly as safe variables, preventing the RDBMS from interpreting input fields as executable code syntax. |
+| **Input Validation** | **Strict Strict Allowlisting** | Rejects or ignores non-conforming character arrays prior to logical layer operations, preventing unexpected SQL commands or special characters entirely. |
+| **Behavioral Logic** | **Separation of Parameters** | Redesigns application processes so structural variables (like table or column names) cannot be influenced or passed via client-side requests. |
+
+---
+
+## 4. Final Verification Summary
+The completion of all 51 baseline and practitioner assessment objectives marks a thorough operational understanding of SQL injection attack lifecycles and modern remediation concepts.
+
+![Figure 1: Path Completion Verification Indicator](Screenshot_2026-11-10_19_25_51.png)
+
